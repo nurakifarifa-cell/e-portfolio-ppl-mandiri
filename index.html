@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="E-Portfolio Praktik Mengajar Mandiri (LK 3) Nur Akifa Rifai — PPG Prajabatan Gelombang 1 2026, Universitas Negeri Makassar, SMK Negeri 2 Makassar Program Keahlian Broadcasting dan Perfilman.">
+<meta name="theme-color" content="#9c666c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>E-Portfolio Praktik Mengajar Mandiri | Nur Akifa Rifai — PPG Prajabatan 2026</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+<style>
+  :root {
+    --primary: #9c5261;
+    --primary-dark: #763c48;
+    --primary-light: #b86d7c;
+    --bg-main: #f5f0eb;
+    --card-bg: #faf7f2;
+    --text-color: #3b3032;
+    --text-muted: #736265;
+    --border-color: #e3d7cf;
+    --shadow-3d: 10px 10px 22px #d5ccc3, -10px -10px 22px #ffffff;
+    --shadow-3d-sm: 5px 5px 12px #d5ccc3, -5px -5px 12px #ffffff;
+    --shadow-inset: inset 4px 4px 10px #d5ccc3, inset -4px -4px 10px #ffffff;
+  }
+
+  [data-theme="dark"] {
+    --primary: #b86d7c;
+    --primary-dark: #cf8493;
+    --primary-light: #9c5261;
+    --bg-main: #201b1c;
+    --card-bg: #282224;
+    --text-color: #f2e9e4;
+    --text-muted: #bda8ab;
+    --border-color: #3d3336;
+    --shadow-3d: 8px 8px 18px #151112, -8px -8px 18px #332b2e;
+    --shadow-3d-sm: 4px 4px 8px #151112, -4px -4px 8px #332b2e;
+    --shadow-inset: inset 3px 3px 8px #151112, inset -3px -3px 8px #332b2e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .brand-title, .header-name, .hero-title, .block-title {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* FORCE ALL ICONS TO SHARE THE EXACT SAME MAUVE DUSTY COLOR - !important removed for flexibility */
+  i, .fa-solid, .fa-regular, .fa-brands {
+    color: var(--primary);
+  }
+
+  /* LOADER */
+  .loader {
+    position: fixed; inset: 0; background: var(--bg-main); z-index: 9999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.5s ease;
+  }
+  .loader.fade-out { opacity: 0; pointer-events: none; }
+  .loader-book {
+    font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem;
+    animation: bounce 1.2s infinite ease-in-out;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* PROGRESS BAR */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; height: 4px; background: var(--primary);
+    width: 0%; z-index: 1000; transition: width 0.1s linear;
+  }
+
+  /* MOBILE OVERLAY */
+  .mobile-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 850;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .mobile-overlay.show { opacity: 1; pointer-events: auto; }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed; top: 0; left: 0; width: 280px; height: 100vh;
+    background: var(--card-bg); border-right: 1px solid var(--border-color);
+    box-shadow: var(--shadow-3d); z-index: 900; display: flex; flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .sidebar.collapsed { transform: translateX(-280px); }
+  .sidebar-brand {
+    padding: 1.5rem; display: flex; align-items: center; gap: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .brand-mark {
+    width: 48px; height: 48px; border-radius: 14px; background: var(--card-bg);
+    box-shadow: var(--shadow-3d-sm); display: flex; align-items: center; justify-content: center;
+    font-size: 1.35rem;
+  }
+  .brand-text { display: flex; flex-direction: column; }
+  .brand-title { font-size: 1.2rem; font-weight: 700; color: var(--text-color); }
+  .brand-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+  .sidebar-nav {
+    flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .nav-link {
+    display: flex; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem;
+    border-radius: 12px; color: var(--text-color); text-decoration: none; font-weight: 600;
+    font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 2px 2px 5px transparent;
+  }
+  .nav-link:hover, .nav-link.active {
+    background: var(--card-bg); box-shadow: var(--shadow-3d-sm);
+    transform: translateY(-2px);
+  }
+  .sidebar-collapse-btn {
+    margin: 1rem; padding: 0.8rem; border: none; border-radius: 12px;
+    background: var(--card-bg); box-shadow: var(--shadow-3d-sm);
+    cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  .sidebar-collapse-btn:hover { box-shadow: var(--shadow-inset); }
+
+  /* MAIN WRAPPER */
+  .main-wrapper {
+    margin-left: 280px; min-height: 100vh; display: flex; flex-direction: column;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .main-wrapper.expanded { margin-left: 0; }
+
+  /* HEADER */
+  .site-header {
+    position: sticky; top: 0; background: var(--bg-main); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; display: flex;
+    align-items: center; justify-content: space-between; z-index: 800;
+  }
+  .hamburger {
+    background: var(--card-bg); border: none; width: 44px; height: 44px; border-radius: 12px;
+    box-shadow: var(--shadow-3d-sm); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 1.15rem; transition: transform 0.2s ease;
+  }
+  .hamburger:hover { box-shadow: var(--shadow-inset); }
+  .header-text { flex: 1; margin-left: 1.5rem; }
+  .header-eyebrow { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+  .header-name { font-size: 1.45rem; font-weight: 700; color: var(--text-color); }
+  .header-actions { display: flex; align-items: center; gap: 1rem; }
+  .theme-toggle {
+    background: var(--card-bg); border: none; width: 44px; height: 44px; border-radius: 12px;
+    box-shadow: var(--shadow-3d-sm); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 1.15rem; transition: transform 0.2s ease;
+  }
+  .theme-toggle:hover { box-shadow: var(--shadow-inset); }
+  .header-photo {
+    width: 48px; height: 48px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-3d-sm);
+  }
+  .header-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* CONTENT */
+  .content { padding: 2.5rem; flex: 1; max-width: 1300px; width: 100%; margin: 0 auto; }
+  .section { margin-bottom: 4rem; scroll-margin-top: 100px; }
+  .section-heading { margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-heading h2 { font-size: 2.1rem; color: var(--text-color); font-weight: 700; }
+
+  /* CARDS & 3D DESIGN */
+  .card {
+    background: var(--card-bg); border-radius: 24px; padding: 2.5rem;
+    box-shadow: var(--shadow-3d); border: 1px solid var(--border-color); margin-bottom: 2.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  /* HERO SECTION */
+  .hero-section { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 160px); }
+  .hero-card {
+    background: var(--card-bg); border-radius: 28px; padding: 3.5rem; box-shadow: var(--shadow-3d);
+    position: relative; overflow: hidden; border: 1px solid var(--border-color); text-align: center; width: 100%;
+  }
+  .hero-tape {
+    position: absolute; top: -15px; right: -40px; width: 150px; height: 35px; background: var(--primary);
+    transform: rotate(45deg); opacity: 0.2;
+  }
+  .eyebrow-note { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; letter-spacing: 2px; }
+  .hero-title { font-size: 2.75rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-color); }
+  .hero-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 850px; margin: 0 auto 2.5rem auto; }
+  .hero-buttons { display: flex; justify-content: center; gap: 1rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2rem; border-radius: 16px;
+    font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.2s ease; border: none;
+  }
+  .btn-primary {
+    background: var(--card-bg); color: var(--primary); box-shadow: var(--shadow-3d);
+  }
+  .btn-primary:hover { box-shadow: var(--shadow-inset); transform: translateY(2px); }
+
+  /* PROFIL SECTION */
+  .profil-card { display: grid; grid-template-columns: 340px 1fr; gap: 3rem; align-items: center; }
+  .profil-photo { width: 100%; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-3d-sm); border: 4px solid var(--card-bg); }
+  .profil-photo img { width: 100%; height: auto; display: block; }
+  .detail-list { display: flex; flex-direction: column; gap: 1rem; }
+  .detail-row { display: grid; grid-template-columns: 210px 1fr; gap: 1rem; border-bottom: 1px dashed var(--border-color); padding-bottom: 0.75rem; }
+  .detail-row dt { font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 0.6rem; }
+  .detail-row dd { color: var(--text-muted); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .block-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--text-color); display: flex; align-items: center; gap: 0.75rem; }
+  .block-text { color: var(--text-muted); margin-bottom: 1rem; font-size: 1.05rem; }
+  .location-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; border-radius: 10px;
+    background: var(--card-bg); box-shadow: var(--shadow-3d-sm); color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.2rem;
+    transition: transform 0.2s ease;
+  }
+  .location-tag:hover { box-shadow: var(--shadow-inset); }
+
+  .lptk-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.2rem 0; }
+  .lptk-photo { border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-3d-sm); height: 130px; }
+  .lptk-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.75rem; margin-top: 1.75rem; }
+  .analysis-item { background: var(--card-bg); border-radius: 18px; padding: 1.75rem; box-shadow: var(--shadow-inset); border: 1px solid var(--border-color); }
+  .analysis-item h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.6rem; }
+  .analysis-item p { color: var(--text-muted); font-size: 0.98rem; }
+
+  .daerah-thumb { border-radius: 12px; overflow: hidden; height: 150px; margin-bottom: 1.2rem; box-shadow: var(--shadow-3d-sm); }
+  .daerah-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .goal-list { padding-left: 1.2rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.6rem; margin: 1.2rem 0; }
+  .profil-quote { font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--primary); background: var(--card-bg); padding: 1.2rem; border-radius: 16px; box-shadow: var(--shadow-inset); margin-top: 1.75rem; }
+  .profil-quote cite { display: block; font-size: 1rem; font-style: normal; margin-top: 0.5rem; color: var(--text-muted); }
+
+  /* SIKLUS BLOCKS */
+  .siklus-block { margin-bottom: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2.5rem; }
+  .siklus-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .siklus-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; }
+  .siklus-badge { background: var(--card-bg); box-shadow: var(--shadow-3d-sm); padding: 0.5rem 1.2rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; color: var(--primary); }
+
+  /* MODUL & UPLOAD BOX */
+  .modul-box { background: var(--card-bg); border-radius: 14px; padding: 1.2rem; box-shadow: var(--shadow-inset); margin-top: 1rem; }
+  .modul-actions { display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap; }
+  .btn-upload { background: var(--card-bg); color: var(--primary); box-shadow: var(--shadow-3d-sm); padding: 0.6rem 1.2rem; border-radius: 10px; cursor: pointer; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s ease; }
+  .btn-upload:hover { box-shadow: var(--shadow-inset); }
+  .upload-input { display: none; }
+  .btn-lihat { background: var(--card-bg); color: var(--primary); box-shadow: var(--shadow-3d-sm); padding: 0.6rem 1.2rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .modul-hint { font-size: 0.88rem; color: var(--text-muted); margin-top: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+  .modul-embed { margin-top: 1rem; }
+  .btn-full { background: var(--card-bg); color: var(--primary); box-shadow: var(--shadow-3d-sm); border: none; padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; width: 100%; justify-content: center; transition: all 0.2s ease; }
+  .btn-full:hover { box-shadow: var(--shadow-inset); }
+  .modul-frame { width: 100%; height: 260px; border: 1px solid var(--border-color); border-radius: 10px; margin-top: 0.75rem; background: #fff; box-shadow: var(--shadow-inset); }
+
+  /* MEDIA & VIDEO PAIRS */
+  .media-pairs { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1.75rem; }
+  .media-pair { background: var(--card-bg); border-radius: 20px; padding: 2rem; box-shadow: var(--shadow-inset); border: 1px solid var(--border-color); }
+  .media-pair-head { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.2rem; }
+  .media-pair-head h4 { font-size: 1.25rem; font-weight: 700; color: var(--text-color); }
+  .media-pair-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .pair-label { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+
+  /* VIDEO DRIVE */
+  .video-drive { display: flex; flex-direction: column; gap: 0.85rem; }
+  .video-drive-input { display: flex; gap: 0.75rem; }
+  .drive-link { flex: 1; padding: 0.6rem 1rem; border-radius: 10px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); font-size: 0.9rem; box-shadow: var(--shadow-inset); }
+  .video-drive-hint { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* TIMELINE NONMENGAJAR */
+  .timeline { position: relative; padding-left: 2.5rem; border-left: 3px dashed var(--border-color); margin-left: 1.5rem; }
+  .timeline-item { position: relative; margin-bottom: 3rem; }
+  .timeline-dot { position: absolute; left: -3.35rem; top: 1.5rem; width: 45px; height: 45px; border-radius: 50%; background: var(--card-bg); box-shadow: var(--shadow-3d); display: flex; align-items: center; justify-content: center; }
+  .kegiatan-dua-kolom { display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: center; }
+
+  /* INSTRUMEN & REFLEKSI */
+  .instrumen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; margin-top: 1.75rem; }
+  .instrumen-item { background: var(--card-bg); border-radius: 18px; padding: 1.75rem; box-shadow: var(--shadow-inset); border: 1px solid var(--border-color); }
+  .reflection-grid { display: flex; flex-direction: column; gap: 1.75rem; }
+  .reflection-item { background: var(--card-bg); border-radius: 18px; padding: 2rem; box-shadow: var(--shadow-inset); border: 1px solid var(--border-color); }
+  .reflection-item h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.85rem; }
+  .reflection-list { padding-left: 1.2rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.85rem; }
+
+  /* FOOTER */
+  .site-footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.95rem; margin-top: auto; }
+
+  /* FLOATING BUTTONS & MODALS */
+  .fab-group { position: fixed; bottom: 2rem; right: 2rem; display: flex; flex-direction: column; gap: 1rem; z-index: 850; }
+  .fab { width: 52px; height: 52px; border-radius: 50%; background: var(--card-bg); box-shadow: var(--shadow-3d); border: 1px solid var(--border-color); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; transition: transform 0.2s ease; }
+  .fab:hover { transform: scale(1.08); box-shadow: var(--shadow-inset); }
+
+  /* MODALS */
+  .modal-overlay, .modul-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .modal-overlay.show, .modul-modal.show { opacity: 1; pointer-events: auto; }
+  .modal-box { background: var(--card-bg); border-radius: 24px; padding: 2.5rem; max-width: 400px; width: 90%; box-shadow: var(--shadow-3d); text-align: center; position: relative; }
+  .modal-close, .modal-close-full { position: absolute; top: 1rem; right: 1rem; background: var(--card-bg); border: none; width: 38px; height: 38px; border-radius: 50%; box-shadow: var(--shadow-3d-sm); cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; }
+  .modal-close:hover, .modal-close-full:hover { box-shadow: var(--shadow-inset); }
+  .modul-modal { flex-direction: column; padding: 2rem; }
+  .modul-modal-bar { width: 100%; max-width: 950px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; background: var(--card-bg); padding: 1.2rem; border-radius: 16px; box-shadow: var(--shadow-3d-sm); }
+  .modul-modal-btns { display: flex; gap: 1rem; align-items: center; }
+  .btn-modal-aksi { background: var(--card-bg); color: var(--primary); box-shadow: var(--shadow-3d-sm); padding: 0.6rem 1.2rem; border-radius: 10px; text-decoration: none; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .modul-modal-frame { width: 100%; max-width: 950px; height: 75vh; background: #fff; border-radius: 16px; border: none; box-shadow: var(--shadow-3d); }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .sidebar { transform: translateX(-280px); }
+    .sidebar.mobile-open { transform: translateX(0); }
+    .main-wrapper { margin-left: 0 !important; }
+    .profil-card { grid-template-columns: 1fr; text-align: center; }
+    .profil-photo { max-width: 260px; margin: 0 auto; }
+    .detail-row { grid-template-columns: 1fr; gap: 0.2rem; text-align: left; }
+    .two-col, .media-pair-body, .kegiatan-dua-kolom { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-book">
+    <i class="fa-solid fa-graduation-cap"></i>
+  </div>
+  <p>Menyiapkan portfolio<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-mark"><i class="fa-solid fa-feather-pointed"></i></div>
+    <div class="brand-text">
+      <span class="brand-title">E-Portfolio</span>
+      <span class="brand-sub">Praktik Mengajar Mandiri</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="#beranda" class="nav-link active" data-section="beranda">
+      <i class="fa-solid fa-house"></i><span>Beranda</span>
+    </a>
+    <a href="#profil" class="nav-link" data-section="profil">
+      <i class="fa-solid fa-user"></i><span>Profil Guru</span>
+    </a>
+    <a href="#rancangan" class="nav-link" data-section="rancangan">
+      <i class="fa-solid fa-book-open"></i><span>Analisis Rancangan Pembelajaran</span>
+    </a>
+    <a href="#materi" class="nav-link" data-section="materi">
+      <i class="fa-solid fa-book"></i><span>Analisis Materi Pembelajaran</span>
+    </a>
+    <a href="#media" class="nav-link" data-section="media">
+      <i class="fa-solid fa-display"></i><span>Analisis Media Pembelajaran</span>
+    </a>
+    <a href="#video-mengajar" class="nav-link" data-section="video-mengajar">
+      <i class="fa-solid fa-video"></i><span>Analisis Video Mengajar</span>
+    </a>
+    <a href="#nonmengajar" class="nav-link" data-section="nonmengajar">
+      <i class="fa-solid fa-school"></i><span>Analisis Kegiatan Nonmengajar</span>
+    </a>
+    <a href="#instrumen" class="nav-link" data-section="instrumen">
+      <i class="fa-solid fa-clipboard-check"></i><span>Instrumen Penilaian</span>
+    </a>
+    <a href="#refleksi" class="nav-link" data-section="refleksi">
+      <i class="fa-solid fa-lightbulb"></i><span>Refleksi Diri</span>
+    </a>
+  </nav>
+
+  <button class="sidebar-collapse-btn" id="collapseBtn" title="Ciutkan Sidebar">
+    <i class="fa-solid fa-angles-left"></i><span>Ciutkan</span>
+  </button>
+</aside>
+
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper" id="mainWrapper">
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Buka menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="header-text">
+      <p class="header-eyebrow">E-Portfolio Praktik Mengajar Mandiri</p>
+      <h1 class="header-name">Nur Akifa Rifai, S.Sos.</h1>
+    </div>
+
+      <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" title="Mode Gelap">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <div class="header-photo">
+        <img id="headerPhotoImg" src="assets/foto-profil.jpg" alt="Foto Profil Guru"
+             onerror="this.onerror=null;this.src='assets/default-avatar.jpg'">
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= CONTENT ================= -->
+  <main class="content">
+
+    <!-- ============ HERO / BERANDA ============ -->
+    <section id="beranda" class="section hero-section">
+      <div class="hero-card" data-aos="fade-up">
+        <div class="hero-tape"></div>
+        <p class="eyebrow-note">Selamat Datang</p>
+        <h2 class="hero-title">E-Portfolio Praktik Mengajar Mandiri</h2>
+        <p class="hero-desc">
+          Ruang digital yang menampilkan seluruh dokumentasi, analisis, refleksi, serta bukti
+          implementasi pembelajaran selama Praktik Pengalaman Lapangan (PPL) pada Program
+          Pendidikan Profesi Guru (PPG) Calon Guru Gelombang 1 Tahun 2026 di SMK Negeri 2 Makassar,
+          Program Keahlian Broadcasting dan Perfilman.
+        </p>
+        <div class="hero-buttons">
+          <a href="#profil" class="btn btn-primary">
+            <i class="fa-solid fa-book-bookmark"></i> Lihat Portfolio
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROFIL GURU ============ -->
+    <section id="profil" class="section">
+      <div class="section-heading" data-aos="fade-up">
+        <h2><i class="fa-solid fa-user"></i> Profil Guru</h2>
+      </div>
+
+      <div class="card profil-card">
+        <div class="profil-photo" data-aos="zoom-in" style="position: relative;">
+          <img id="mainProfileImg" src="assets/foto-profil.jpg" alt="Foto Guru"
+               onerror="this.onerror=null;this.src='assets/default-avatar.jpg'">
+          <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 100%; text-align: center;">
+            <label class="btn-upload" for="uploadProfilePic" style="box-shadow: var(--shadow-3d); opacity: 0.95;">
+              <i class="fa-solid fa-camera"></i> Ubah Foto
+            </label>
+            <input type="file" id="uploadProfilePic" class="upload-input" accept=".jpg,.jpeg,.png,.webp">
+          </div>
+        </div>
+            <div class="profil-detail" data-aos="fade-left">
+          <dl class="detail-list">
+            <div class="detail-row"><dt><i class="fa-solid fa-id-badge"></i> Nama Lengkap</dt><dd>Nur Akifa Rifai, S.Sos.</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-user"></i> Nama Panggilan</dt><dd>Akifa</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-id-card"></i> NIM</dt><dd>2590554950598</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-cake-candles"></i> Tempat, Tanggal Lahir</dt><dd>Sinjai, 23 Februari 2003</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-graduation-cap"></i> Bidang Studi</dt><dd>Broadcasting dan Perfilman</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-user-graduate"></i> Program</dt><dd>PPG Calon Guru Gelombang 1 Tahun 2026</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-building-columns"></i> LPTK</dt><dd>Universitas Negeri Makassar (UNM)</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-school"></i> Sekolah PPL</dt><dd>SMK Negeri 2 Makassar &mdash; Program Keahlian Broadcasting dan Perfilman</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-chalkboard-user"></i> Guru Pamong</dt><dd>Sitti Rohkma, S.Si., S.Pd., M.Pd</dd></div>
+            <div class="detail-row"><dt><i class="fa-solid fa-user-tie"></i> Dosen Pembimbing Lapangan</dt><dd>Dr. Sanatang, S.Pd., M.Pd.</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-bottom:2.5rem;">
+        <div class="card" data-aos="fade-up" style="margin-bottom:0;">
+          <h3 class="block-title"><i class="fa-solid fa-building-columns"></i> Kampus LPTK Universitas Negeri Makassar</h3>
+          <a class="location-tag" href="https://www.google.com/maps/search/?api=1&query=Universitas+Negeri+Makassar" target="_blank" rel="noopener">
+            <i class="fa-solid fa-location-dot"></i> Jl. A.P. Pettarani, Makassar, Sulawesi Selatan
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <div class="lptk-gallery">
+            <figure class="lptk-photo"><img src="UNM.jpg" alt="UNM" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+            <figure class="lptk-photo"><img src="unmpi.jpg" alt="UNM" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+            <figure class="lptk-photo"><img src="unmp.jpg" alt="UNM" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+          </div>
+          <p class="block-text">
+            Universitas Negeri Makassar (UNM) adalah salah satu perguruan tinggi negeri terbesar di Indonesia Timur,
+            berlokasi di Jl. A.P. Pettarani, Makassar, yang menyiapkan pendidik profesional melalui program PPG.
+          </p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="50" style="margin-bottom:0;">
+          <h3 class="block-title"><i class="fa-solid fa-school"></i> Sekolah PPL  SMK Negeri 2 Makassar</h3>
+          <a class="location-tag" href="https://www.google.com/maps/search/?api=1&query=SMK+Negeri+2+Makassar" target="_blank" rel="noopener">
+            <i class="fa-solid fa-location-dot"></i> Jl. Dr. Ratulangi No.128, Makassar
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <div class="lptk-gallery">
+            <figure class="lptk-photo"><img src="smk2makassar.jpg" alt="SMKN 2" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+            <figure class="lptk-photo"><img src="penarikanppl.jpeg" alt="Studio Broadcast" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+            <figure class="lptk-photo"><img src="images.jpg" alt="Lab Editing" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+          </div>
+          <p class="block-text">
+            SMK Negeri 2 Makassar adalah sekolah kejuruan unggulan yang membekali peserta didik dengan keterampilan siap kerja,
+            khususnya pada Program Keahlian Broadcasting dan Perfilman.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card" data-aos="fade-up" style="margin-bottom:0;">
+          <h3 class="block-title"><i class="fa-solid fa-map-location-dot"></i> Asal &amp; Keunikan Daerah — Sinjai</h3>
+          <p class="block-text">
+            Sinjai dikenal dengan julukan <em>"Bumi Panrita Kitta"</em>, memiliki kekayaan budaya dan destinasi wisata alam yang memukau
+            seperti Hutan Mangrove Tongke-Tongke, Taman Purbakala Gojeng, serta keindahan gugusan Pulau Sembilan.
+          </p>
+          <div class="analysis-grid" style="margin-top:1.2rem;">
+            <div class="analysis-item">
+              <figure class="daerah-thumb"><img src="hutanmangrove.jpg" alt="Mangrove" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+              <h4><i class="fa-solid fa-tree"></i> Mangrove Tongke-Tongke</h4>
+              <p>Kawasan hutan mangrove terluas dan pelindung pantai yang asri.</p>
+            </div>
+            <div class="analysis-item">
+              <figure class="daerah-thumb"><img src="tamanpurbakalgojeng.jpg" alt="Gojeng" loading="lazy" onerror="this.src='assets/default-img.jpg'"></figure>
+              <h4><i class="fa-solid fa-landmark"></i> Taman Purbakala Gojeng</h4>
+              <p>Situs sejarah dan purbakala peninggalan masa lampau di Sinjai.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" style="margin-bottom:0;">
+          <h3 class="block-title"><i class="fa-solid fa-heart"></i> Inspirasi &amp; Tujuan Menjadi Guru</h3>
+          <p class="block-text">
+            Inspirasi saya menjadi guru tumbuh dari tekad untuk mencerdaskan kehidupan bangsa melalui pendidikan vokasi
+            di bidang broadcasting dan perfilman yang kreatif, inovatif, dan berpusat pada peserta didik.
+          </p>
+          <ol class="goal-list">
+            <li>Menjadi pendidik profesional yang reflektif dan adaptif.</li>
+            <li>Mengembangkan pembelajaran penyiaran dan produksi media yang kontekstual.</li>
+            <li>Mencetak talenta muda perfilman Indonesia yang kreatif dan berdaya saing.</li>
+          </ol>
+          <blockquote class="profil-quote">
+            "Karya terbaik lahir dari proses belajar yang tekun dan penuh ketulusan."
+            <cite>&mdash; Nur Akifa Rifai</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ANALISIS RANCANGAN PEMBELAJARAN ============ -->
+    <section id="rancangan" class="section">
+      <div class="section-heading" data-aos="fade-up">
+        <h2><i class="fa-solid fa-book-open"></i> Analisis Produk Rancangan Pembelajaran</h2>
+      </div>
+
+      <div class="card" data-aos="fade-up">
+        <!-- Siklus 1 -->
+        <div class="siklus-block">
+          <div class="siklus-head">
+            <span class="siklus-badge">Siklus 1</span>
+            <h3 class="block-title"><i class="fa-solid fa-video"></i> Manajemen Produksi Televisi</h3>
+          </div>
+          <div class="analysis-grid">
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-file-lines"></i> Modul Ajar</h4>
+              <div class="modul-box">
+                <div class="modul-actions" data-nama="Modul Ajar Siklus 1">
+                  <label class="btn-upload" for="upload1"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Modul</label>
+                  <input type="file" id="upload1" class="upload-input" accept=".pdf,.doc,.docx" data-target="modul-frame-1">
+                </div>
+                <p class="modul-hint" id="hint1"><i class="fa-solid fa-circle-info"></i> Berkas lokal: <code>assets/modul-siklus-1.pdf</code> (atau upload baru).</p>
+                <div class="modul-embed">
+                  <button type="button" class="btn-full" data-zoom="modul-frame-1" style="margin-bottom:0.75rem;"><i class="fa-solid fa-expand"></i> Perbesar</button>
+                  <iframe class="modul-frame" id="modul-frame-1" src="assets/modul-siklus-1.pdf" title="Modul 1"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-check"></i> Kelebihan</h4>
+              <p>Menggunakan model PBL dengan praktik langsung penulisan naskah dan penggunaan kamera.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-minus"></i> Kekurangan</h4>
+              <p>Alokasi waktu praktik pengambilan gambar perlu ditambah durasinya.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-arrows-rotate"></i> Perbaikan</h4>
+              <p>Menyusun ulang manajemen waktu dan memperjelas rubrik asesmen praktik.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Siklus 2 -->
+        <div class="siklus-block">
+          <div class="siklus-head">
+            <span class="siklus-badge">Siklus 2</span>
+            <h3 class="block-title"><i class="fa-solid fa-clapperboard"></i> Teknik Tata Kamera dan Editing Video</h3>
+          </div>
+          <div class="analysis-grid">
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-file-lines"></i> Modul Ajar</h4>
+              <div class="modul-box">
+                <div class="modul-actions" data-nama="Modul Ajar Siklus 2">
+                  <label class="btn-upload" for="upload2"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Modul</label>
+                  <input type="file" id="upload2" class="upload-input" accept=".pdf,.doc,.docx" data-target="modul-frame-2">
+                </div>
+                <p class="modul-hint" id="hint2"><i class="fa-solid fa-circle-info"></i> Berkas lokal: <code>assets/modul-siklus-2.pdf</code> (atau upload baru).</p>
+                <div class="modul-embed">
+                  <button type="button" class="btn-full" data-zoom="modul-frame-2" style="margin-bottom:0.75rem;"><i class="fa-solid fa-expand"></i> Perbesar</button>
+                  <iframe class="modul-frame" id="modul-frame-2" src="assets/modul-siklus-2.pdf" title="Modul 2"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-check"></i> Kelebihan</h4>
+              <p>Pemanfaatan software editing dan kamera profesional secara langsung di lab penyiaran meningkatkan keterlibatan aktif siswa.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-minus"></i> Kekurangan</h4>
+              <p>Ketersediaan perangkat komputer editing secara bergantian memerlukan manajemen kelompok yang lebih terstruktur.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-arrows-rotate"></i> Perbaikan</h4>
+              <p>Menerapkan sistem rotasi peran (Director, Cameraman, Editor) dan manajemen waktu <i>shooting</i> yang presisi.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Siklus 3 -->
+        <div class="siklus-block">
+          <div class="siklus-head">
+            <span class="siklus-badge">Siklus 3</span>
+            <h3 class="block-title"><i class="fa-solid fa-film"></i> Pascaproduksi dan Pengendalian Mutu Film Pendek</h3>
+          </div>
+          <div class="analysis-grid">
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-file-lines"></i> Modul Ajar</h4>
+              <div class="modul-box">
+                <div class="modul-actions" data-nama="Modul Ajar Siklus 3">
+                  <label class="btn-upload" for="upload3"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Modul</label>
+                  <input type="file" id="upload3" class="upload-input" accept=".pdf,.doc,.docx" data-target="modul-frame-3">
+                </div>
+                <p class="modul-hint" id="hint3"><i class="fa-solid fa-circle-info"></i> Berkas lokal: <code>assets/modul-siklus-3.pdf</code> (atau upload baru).</p>
+                <div class="modul-embed">
+                  <button type="button" class="btn-full" data-zoom="modul-frame-3" style="margin-bottom:0.75rem;"><i class="fa-solid fa-expand"></i> Perbesar</button>
+                  <iframe class="modul-frame" id="modul-frame-3" src="assets/modul-siklus-3.pdf" title="Modul 3"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-check"></i> Kelebihan</h4>
+              <p>Siswa mampu melakukan color grading, mixing audio, dan penyuntingan akhir secara mandiri berdasarkan skenario.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-minus"></i> Kekurangan</h4>
+              <p>Proses render dan ekspor video membutuhkan waktu lama sehingga manajemen durasi belajar perlu dioptimalkan.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-arrows-rotate"></i> Perbaikan</h4>
+              <p>Menyiapkan berkas aset mentah lebih awal dan menggunakan preset rendering yang efisien.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Siklus 4 -->
+        <div class="siklus-block">
+          <div class="siklus-head">
+            <span class="siklus-badge">Siklus 4</span>
+            <h3 class="block-title"><i class="fa-solid fa-tv"></i> Penayangan Publik dan Evaluasi Karya (Screening)</h3>
+          </div>
+          <div class="analysis-grid">
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-file-lines"></i> Modul Ajar</h4>
+              <div class="modul-box">
+                <div class="modul-actions" data-nama="Modul Ajar Siklus 4">
+                  <label class="btn-upload" for="upload4"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Modul</label>
+                  <input type="file" id="upload4" class="upload-input" accept=".pdf,.doc,.docx" data-target="modul-frame-4">
+                </div>
+                <p class="modul-hint" id="hint4"><i class="fa-solid fa-circle-info"></i> Berkas lokal: <code>assets/modul-siklus-4.pdf</code> (atau upload baru).</p>
+                <div class="modul-embed">
+                  <button type="button" class="btn-full" data-zoom="modul-frame-4" style="margin-bottom:0.75rem;"><i class="fa-solid fa-expand"></i> Perbesar</button>
+                  <iframe class="modul-frame" id="modul-frame-4" src="assets/modul-siklus-4.pdf" title="Modul 4"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-check"></i> Kelebihan</h4>
+              <p>Melatih mental tampil publik dan kemampuan memberikan kritik konstruktif antarkelompok melalui forum apresiasi film.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-circle-minus"></i> Kekurangan</h4>
+              <p>Keterbatasan waktu tanya jawab di akhir sesi pemutaran karya akibat antusiasme diskusi.</p>
+            </div>
+            <div class="analysis-item">
+              <h4><i class="fa-solid fa-arrows-rotate"></i> Perbaikan</h4>
+              <p>Mengatur batasan waktu diskusi per karya dan menggunakan rubrik penilaian umpan balik tertulis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+	<!-- ============ ANALISIS MATERI ============ -->
+<section id="materi" class="section">
+  <div class="section-heading" data-aos="fade-up">
+    <h2><i class="fa-solid fa-book"></i> Analisis Materi Pembelajaran</h2>
+  </div>
+  <div class="card" data-aos="fade-up">
+    <div class="siklus-block" style="margin-bottom:0; padding-bottom:0; border-bottom:none;">
+      <div class="siklus-head">
+        <span class="siklus-badge">Siklus 1 &amp; 2</span>
+        <h3 class="block-title"><i class="fa-solid fa-layer-group"></i> Substansi Materi Broadcasting dan Perfilman</h3>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-item">
+          <h4><i class="fa-solid fa-lightbulb"></i> Analisis Materi</h4>
+          <p>Materi dipilih berdasarkan kebutuhan esensial industri penyiaran dan perfilman masa kini.</p>
+        </div>
+        <div class="analysis-item">
+          <h4><i class="fa-solid fa-bullseye"></i> Tujuan Pembelajaran</h4>
+          <p>Disusun spesifik agar peserta didik menguasai teknik produksi audio visual secara komprehensif.</p>
+        </div>
+        <div class="analysis-item">
+          <h4><i class="fa-solid fa-pen-ruler"></i> Revisi &amp; Tindak Lanjut</h4>
+          <p>Penyempurnaan dilakukan berdasarkan hasil refleksi tiap akhir siklus praktik.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+   <!-- ============ ANALISIS MEDIA ============ -->
+    <section id="media" class="section" style="max-width: 1100px; margin: 0 auto; padding: 0 15px;">
+      <div class="section-heading" data-aos="fade-up">
+        <h2><i class="fa-solid fa-display"></i> Analisis Media Pembelajaran</h2>
+      </div>
+      <div class="card" data-aos="fade-up" style="margin: 0 auto;">
+        <div class="media-pairs">
+          <div class="media-pair">
+            <div class="media-pair-head">
+              <i class="fa-solid fa-photo-film"></i>
+              <h4>Kamera DSLR/Mirrorless &amp; Storyboard Sinematik</h4>
+            </div>
+            <div class="media-pair-body">
+              <div>
+                <p class="pair-label"><i class="fa-solid fa-upload"></i> Unggah Berkas Media</p>
+                <div class="modul-box" style="margin-top:0;">
+                  <div class="modul-actions" data-nama="Media Pembelajaran Broadcasting">
+                    <label class="btn-upload" for="media-u1"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Media</label>
+                    <input type="file" id="media-u1" class="upload-input" accept=".ppt,.pptx,.pdf,.mp4,.jpg,.png" data-target="media-frame-1">
+                  </div>
+                  <p class="modul-hint" id="hint-media-u1"><i class="fa-solid fa-circle-info"></i> Berkas lokal: <code>assets/media-broadcasting.pdf</code></p>
+                  <div class="modul-embed">
+                    <iframe class="modul-frame" id="media-frame-1" src="assets/media-broadcasting.pdf" title="Media 1" style="height:180px;"></iframe>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="pair-label"><i class="fa-solid fa-magnifying-glass-chart"></i> Analisis Penggunaan</p>
+                <p>Penggunaan kamera profesional dan storyboard visual memudahkan peserta didik memahami komposisi <i>frame</i>, pergerakan kamera (camera angle), serta teknik pengambilan gambar sinematik.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ANALISIS VIDEO MENGAJAR ============ -->
+    <section id="video-mengajar" class="section">
+      <div class="section-heading" data-aos="fade-up">
+        <h2><i class="fa-solid fa-video"></i> Analisis Video Mengajar</h2>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <div class="media-pairs">
+          <div class="media-pair">
+            <div class="media-pair-head">
+              <i class="fa-solid fa-clapperboard"></i>
+              <h4>Rekaman Praktik Pembelajaran Mandiri</h4>
+            </div>
+            <div class="media-pair-body">
+              <div class="video-drive">
+                <p class="pair-label"><i class="fa-brands fa-google-drive"></i> Link Google Drive Video</p>
+                <div class="video-drive-input">
+                  <input type="url" class="drive-link" id="drive-link-1" data-target="drive-frame-1" placeholder="Tempel link Google Drive di sini...">
+                  <button type="button" class="btn-full" data-drive="drive-link-1" style="width:auto; padding:0.6rem 1.2rem;"><i class="fa-solid fa-play"></i> Muat</button>
+                </div>
+                <p class="video-drive-hint"><i class="fa-solid fa-circle-info"></i> Masukkan tautan video atau gunakan video lokal <code>assets/video-mengajar.mp4</code>.</p>
+                <div class="modul-embed" style="margin-top:0.75rem;">
+                  <iframe class="modul-frame" id="drive-frame-1" src="assets/video-mengajar.mp4" title="Video 1" allowfullscreen style="height:220px;"></iframe>
+                </div>
+              </div>
+              <div>
+                <p class="pair-label"><i class="fa-solid fa-file-lines"></i> Catatan Analisis</p>
+                <p>Video memperlihatkan interaksi positif, pengelolaan kelas lab broadcasting yang tertib, serta ketercapaian kompetensi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KEGIATAN NONMENGAJAR ============ -->
+    <section id="nonmengajar" class="section">
+      <div class="section-heading" data-aos="fade-up">
+        <h2><i class="fa-solid fa-school"></i> Analisis Kegiatan Nonmengajar</h2>
+      </div>
+      <div class="timeline">
+        <!-- Kegiatan 1 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-face-smile"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 1</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Kegiatan 3S (Senyum, Salam, Sapa) &amp; Upacara</h4>
+              <p class="block-text" style="margin-bottom:0;">Membangun kedisiplinan, karakter religius, serta kebiasaan positif di lingkungan sekolah bersama seluruh warga SMK Negeri 2 Makassar.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Kegiatan 3S">
+                <label class="btn-upload" for="keg-u1"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u1" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-1">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-1" src="3s.jpeg" title="Kegiatan 1" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 2 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 2</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Upacara Hari Senin</h4>
+              <p class="block-text" style="margin-bottom:0;">Melaksakan Upacara Setiap Hari Senin.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Piket BK">
+                <label class="btn-upload" for="keg-u2"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u2" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-2">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-2" src="upacaraharisenin.jpg" title="Kegiatan 2" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 3 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-book-open-reader"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 3</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Pengelolaan dan Penataan Perpustakaan Sekolah</h4>
+              <p class="block-text" style="margin-bottom:0;">Membantu menginventarisasi buku referensi perfilman serta menata katalog literasi digital bagi siswa.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Perpustakaan">
+                <label class="btn-upload" for="keg-u3"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u3" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-3">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-3" src="assets/kegiatan-perpus.jpg" title="Kegiatan 3" style="height:100px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 4 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-laptop-code"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 4</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Maintenance Perangkat Lab Komputer &amp; Editing</h4>
+              <p class="block-text" style="margin-bottom:0;">Melakukan pengecekan berkala pada perangkat PC editing video, kamera, dan instalasi software penyiaran.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Lab">
+                <label class="btn-upload" for="keg-u4"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u4" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-4">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-4" src="assets/kegiatan-lab.jpg" title="Kegiatan 4" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 5 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-hands-holding-child"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 5</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Pendampingan Ekstrakurikuler Sinematografi &amp; Teater</h4>
+              <p class="block-text" style="margin-bottom:0;">Melatih siswa dalam teknik akting di depan kamera, olah vokal, serta penyusunan storyboard produksi film pendek mandiri.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Ekstrakurikuler">
+                <label class="btn-upload" for="keg-u5"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u5" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-5">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-5" src="assets/kegiatan-ekskul.jpg" title="Kegiatan 5" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 6 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-users-gear"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 6</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Koordinasi MGMP &amp; Rapat Koordinasi Guru</h4>
+              <p class="block-text" style="margin-bottom:0;">Aktif mengikuti rapat koordinasi dewan guru dan Musyawarah Guru Mata Pelajaran (MGMP) tingkat sekolah kejuruan.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi MGMP">
+                <label class="btn-upload" for="keg-u6"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u6" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-6">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-6" src="assets/kegiatan-mgmp.jpg" title="Kegiatan 6" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 7 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-medal"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 7</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Panitia Kegiatan Porseni &amp; Hari Besar Nasional</h4>
+              <p class="block-text" style="margin-bottom:0;">Berpartisipasi aktif sebagai panitia pendamping dokumentasi video dan juri lomba kreatif antar kelas dalam rangka peringatan hari nasional.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Porseni">
+                <label class="btn-upload" for="keg-u7"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u7" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-7">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-7" src="assets/kegiatan-porseni.jpg" title="Kegiatan 7" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 8 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-handshake-angle"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 8</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Kunjungan Industri &amp; Hubungan Dunia Kerja (DUDI)</h4>
+              <p class="block-text" style="margin-bottom:0;">Mendampingi siswa SMK Negeri 2 Makassar melakukan studi lapangan dan sinkronisasi kurikulum penyiaran dengan stasiun TV lokal.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi DUDI">
+                <label class="btn-upload" for="keg-u8"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u8" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-8">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-8" src="assets/kegiatan-dudi.jpg" title="Kegiatan 8" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 9 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-broom-ball"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 9</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Kegiatan Jumat Bersih &amp; Perawatan Lingkungan Sekolah</h4>
+              <p class="block-text" style="margin-bottom:0;">Memimpin kerja bakti bersama peserta didik dalam menjaga kebersihan lingkungan sekolah dan area studio praktik penyiaran.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Jumat Bersih">
+                <label class="btn-upload" for="keg-u9"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u9" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-9">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-9" src="assets/kegiatan-jumatbersih.jpg" title="Kegiatan 9" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kegiatan 10 -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-dot"><i class="fa-solid fa-comments"></i></div>
+          <div class="timeline-content card kegiatan-dua-kolom" style="margin-bottom:0;">
+            <div>
+              <span class="timeline-date" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Kegiatan 10</span>
+              <h4 style="margin: 0.25rem 0 0.75rem 0; font-size:1.25rem;">Evaluasi PPL Bersama Guru Pamong &amp; DPL</h4>
+              <p class="block-text" style="margin-bottom:0;">Melaksanakan sesi diskusi refleksi mingguan dan bimbingan akhir pelaksanaan praktik pengalaman lapangan bersama Dosen Pembimbing dan Guru Pamong.</p>
+            </div>
+            <div class="modul-box" style="margin-top:0;">
+              <div class="modul-actions" data-nama="Dokumentasi Evaluasi PPL">
+                <label class="btn-upload" for="keg-u10"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto</label>
+                <input type="file" id="keg-u10" class="upload-input" accept=".jpg,.png,.jpeg" data-target="keg-frame-10">
+              </div>
+              <div class="modul-embed">
+                <iframe class="modul-frame" id="keg-frame-10" src="assets/kegiatan-evaluasi.jpg" title="Kegiatan 10" style="height:140px;" onerror="this.style.display='none'"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INSTRUMEN PENILAIAN ============ -->
+    <section id="instrumen" class="section">
+      <div class="section-heading" data-aos="fade-up">
+        <h2><i class="fa-solid fa-clipboard-check"></i> Instrumen Penilaian &amp; Lampiran</h2>
+      </div>
+      <div class="card" data-aos="fade-up" style="background: var(--card-bg); border-radius: 28px; padding: 3rem; box-shadow: var(--shadow-3d);">
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 2.5rem auto;">
+          <span style="display: inline-block; padding: 0.4rem 1.2rem; border-radius: 20px; background: var(--card-bg); box-shadow: var(--shadow-3d-sm); color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Dokumentasi Resmi PPL</span>
+          <h3 class="block-title" style="justify-content: center; font-size: 2rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-file-shield"></i> Berkas Pendukung Lengkap (Lampiran 7 &amp; 8)</h3>
+          <p class="block-text" style="font-size: 1.05rem;">Seluruh perangkat asesmen, instrumen observasi, rubrik penilaian sikap, pengetahuan, dan keterampilan peserta didik telah dikurasi dan diverifikasi secara profesional.</p>
+        </div>
+
+        <div class="instrumen-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+          <div class="instrumen-item" style="border-radius: 20px; padding: 2rem; background: var(--card-bg); box-shadow: var(--shadow-inset); transition: transform 0.3s ease;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <div style="width: 42px; height: 42px; border-radius: 12px; background: var(--card-bg); box-shadow: var(--shadow-3d-sm); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--text-color);">Perangkat Asesmen Siklus 1 &amp; 2</h4>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem;">Dokumen lengkap rancangan asesmen formatif dan sumatif berbasis praktik broadcasting.</p>
+            <div class="modul-box" style="margin-top: 0;">
+              <div class="modul-actions" data-nama="Perangkat Asesmen">
+                <label class="btn-upload" for="inst-u1"><i class="fa-solid fa-cloud-arrow-up"></i> Unggah Berkas</label>
+                <input type="file" id="inst-u1" class="upload-input" accept=".pdf,.doc,.docx" data-target="inst-frame-1">
+              </div>
+              <p class="modul-hint" id="hint-inst-u1"><i class="fa-solid fa-circle-info"></i> Berkas lokal: <code>assets/perangkat-asesmen.pdf</code></p>
+              <div class="modul-embed" style="margin-top: 1rem;">
+                <button type="button" class="btn-full" data-zoom="inst-frame-1" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-expand"></i> Pratinjau Penuh</button>
+                <iframe class="modul-frame" id="inst-frame-1" src="assets/perangkat-asesmen.pdf" title="Inst 1" style="height: 180px;"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="instrumen-item" style="border-radius: 20px; padding: 2rem; background: var(--card-bg); box-shadow: var(--shadow-inset); transition: transform 0.3s ease;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <div style="width: 42px; height: 42px; border-radius: 12px; background: var(--card-bg); box-shadow: var(--shadow-3d-sm); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                <i class="fa-solid fa-file-certificate"></i>
+              </div>
+              <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--text-color);">Lembar Refleksi &amp; Umpan Balik</h4>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem;">Catatan refleksi mandiri serta umpan balik konstruktif dari guru pamong dan DPL.</p>
+            <div class="modul-box" style="margin-top: 0;">
+              <div class="modul-actions" data-nama="Lembar Refleksi">
+                <label class="btn-upload" for="inst-u2"><i class="fa-solid fa-cloud-arrow-up"></i> Unggah Berkas</label>
+                <input type="file" id="inst-u2" class="upload-input" accept=".pdf,.doc,.docx" data-target="inst-frame-2">
+              </div>
+              <p class="modul-hint" id="hint-inst-u2"><i class="fa-solid fa-circle-info"></i> Berkas lokal: <code>assets/lembar-refleksi.pdf</code></p>
+              <div class="modul-embed" style="margin-top: 1rem;">
+                <button type="button" class="btn-full" data-zoom="inst-frame-2" style="margin-bottom: 0.75rem;"><i class="fa-solid fa-expand"></i> Pratinjau Penuh</button>
+                <iframe class="modul-frame" id="inst-frame-2" src="assets/lembar-refleksi.pdf" title="Inst 2" style="height: 180px;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REFLEKSI DIRI ============ -->
+    <section id="refleksi" class="section">
+      <div class="section-heading" data-aos="fade-up">
+        <h2><i class="fa-solid fa-lightbulb"></i> Refleksi Diri</h2>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <div class="reflection-grid">
+          <div class="reflection-item">
+            <h4><i class="fa-solid fa-graduation-cap"></i> 1. Hal yang Sudah Dipelajari</h4>
+            <p>Selama PPL di SMK Negeri 2 Makassar pada Program Keahlian Broadcasting dan Perfilman, saya berhasil mengintegrasikan pendekatan <em>Project-Based Learning (PBL)</em> dan kerangka <em>TPACK</em> dalam pembelajaran tata kamera dan penulisan naskah. Saya juga memperdalam teknik pengelolaan kelas lab penyiaran serta penyusunan asesmen autentik berbasis rubrik kinerja film pendek.</p>
+          </div>
+          <div class="reflection-item">
+            <h4><i class="fa-solid fa-trophy"></i> 2. Pengalaman Terbaik</h4>
+            <p>Pengalaman terbaik adalah saat membimbing peserta didik memproduksi video pendek dan tata kamera secara langsung di lapangan.</p>
+          </div>
+          <div class="reflection-item">
+            <h4><i class="fa-solid fa-seedling"></i> 3. Rencana Pengembangan Diri</h4>
+            <p>Terus meningkatkan kompetensi pedagogik, menguasai teknologi editing mutakhir, serta memperkuat jejaring industri perfilman.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 E-Portfolio Praktik Mengajar Mandiri &bull; Nur Akifa Rifai, S.Sos.</p>
+    <p>Universitas Negeri Makassar &bull; PPG Prajabatan Gelombang 1 2026</p>
+  </footer>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="fab-group">
+  <button class="fab" id="themeToggleFab" title="Mode Gelap/Terang"><i class="fa-solid fa-moon"></i></button>
+  <button class="fab" id="fabTop" title="Kembali ke atas"><i class="fa-solid fa-arrow-up"></i></button>
+</div>
+
+<!-- MODAL MODUL/BERKAS -->
+<div class="modul-modal" id="modulModal">
+  <div class="modul-modal-bar">
+    <h3 id="modulModalTitle" style="font-family:'Playfair Display',serif;"><i class="fa-solid fa-file-lines"></i> Pratinjau Berkas</h3>
+    <div class="modul-modal-btns">
+      <a class="btn-modal-aksi" id="modulModalTab" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Buka Tab Baru</a>
+      <button type="button" class="modal-close-full" id="modulModalClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+  <iframe class="modul-modal-frame" id="modulModalFrame" title="Pratinjau Besar"></iframe>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({ duration: 800, once: true });
+
+    // Loader
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      if(loader) {
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.style.display = 'none', 500);
+      }
+    }, 600);
+
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const progressBar = document.getElementById('scrollProgress');
+      if(progressBar) progressBar.style.width = scrolled + '%';
+    });
+
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const mainWrapper = document.getElementById('mainWrapper');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const collapseBtn = document.getElementById('collapseBtn');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    function toggleSidebar() {
+      if(window.innerWidth <= 992) {
+        sidebar.classList.toggle('mobile-open');
+        mobileOverlay.classList.toggle('show');
+      } else {
+        sidebar.classList.toggle('collapsed');
+        mainWrapper.classList.toggle('expanded');
+      }
+    }
+
+    if(hamburgerBtn) hamburgerBtn.addEventListener('click', toggleSidebar);
+    if(collapseBtn) collapseBtn.addEventListener('click', toggleSidebar);
+    if(mobileOverlay) mobileOverlay.addEventListener('click', () => {
+      sidebar.classList.remove('mobile-open');
+      mobileOverlay.classList.remove('show');
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleFab = document.getElementById('themeToggleFab');
+    function switchTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if(currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    if(themeToggle) themeToggle.addEventListener('click', switchTheme);
+    if(themeToggleFab) themeToggleFab.addEventListener('click', switchTheme);
+
+    if(localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Scroll to Top
+    const fabTop = document.getElementById('fabTop');
+    if(fabTop) {
+      fabTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Navigation Active state & smooth scroll
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if(targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+          if(window.innerWidth <= 992) {
+            sidebar.classList.remove('mobile-open');
+            mobileOverlay.classList.remove('show');
+          }
+        }
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if(pageYOffset >= sectionTop - 150) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // --- PENYIMPANAN FILE LOKAL DENGAN INDEXEDDB ---
+    const dbName = 'EPortfolioDB';
+    const storeName = 'files';
+
+    function initDB(callback) {
+      const request = indexedDB.open(dbName, 1);
+      request.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(storeName)) {
+          db.createObjectStore(storeName);
+        }
+      };
+      request.onsuccess = (e) => callback(e.target.result);
+      request.onerror = (e) => console.error('IndexedDB error', e);
+    }
+
+    function saveFileToDB(id, file) {
+      initDB(db => {
+        const tx = db.transaction(storeName, 'readwrite');
+        tx.objectStore(storeName).put(file, id);
+      });
+    }
+
+    function displayFileUI(file, inputId, targetId, box) {
+      const frame = document.getElementById(targetId);
+      const hint = box.querySelector('.modul-hint');
+      const embed = box.querySelector('.modul-embed');
+
+      const fileURL = URL.createObjectURL(file);
+      const fileName = file.name.toLowerCase();
+      const isPreviewable = fileName.endsWith('.pdf') || fileName.endsWith('.png') || fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.mp4');
+
+      if (embed) {
+        embed.hidden = false;
+        
+        let noPreviewMsg = embed.querySelector('.no-preview-msg');
+        if (!noPreviewMsg) {
+          noPreviewMsg = document.createElement('div');
+          noPreviewMsg.className = 'no-preview-msg';
+          noPreviewMsg.style.padding = '2rem';
+          noPreviewMsg.style.textAlign = 'center';
+          noPreviewMsg.style.background = 'var(--bg-main)';
+          noPreviewMsg.style.borderRadius = '10px';
+          noPreviewMsg.style.marginTop = '0.75rem';
+          noPreviewMsg.style.border = '1px dashed var(--border-color)';
+          embed.appendChild(noPreviewMsg);
+        }
+
+        const expandBtn = embed.querySelector('[data-zoom]');
+
+        if (isPreviewable && frame) {
+          frame.src = fileURL;
+          frame.style.display = 'block';
+          noPreviewMsg.style.display = 'none';
+          if(expandBtn) expandBtn.style.display = 'inline-flex';
+        } else {
+          if(frame) frame.style.display = 'none';
+          noPreviewMsg.style.display = 'block';
+          noPreviewMsg.innerHTML = `<i class="fa-solid fa-file-arrow-down" style="font-size:2.5rem; margin-bottom:1rem; color:var(--primary);"></i><br>File <strong>${file.name}</strong> berhasil diunggah di browser.<br><p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Pratinjau dokumen ini tidak didukung langsung oleh browser tanpa server.</p><a href="${fileURL}" download="${file.name}" class="btn-modal-aksi"><i class="fa-solid fa-download"></i> Unduh / Buka File</a>`;
+          if(expandBtn) expandBtn.style.display = 'none';
+        }
+      }
+
+      if (hint) hint.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> Diperbarui di browser: <strong>${file.name}</strong>`;
+    }
+
+    function loadFilesFromDB() {
+      initDB(db => {
+        const tx = db.transaction(storeName, 'readonly');
+        const store = tx.objectStore(storeName);
+        const request = store.openCursor();
+        request.onsuccess = (e) => {
+          const cursor = e.target.result;
+          if (cursor) {
+            const inputId = cursor.key;
+            const file = cursor.value;
+            
+            if (inputId === 'uploadProfilePic') {
+              const fileURL = URL.createObjectURL(file);
+              const headerImg = document.getElementById('headerPhotoImg');
+              const mainImg = document.getElementById('mainProfileImg');
+              if(headerImg) headerImg.src = fileURL;
+              if(mainImg) mainImg.src = fileURL;
+            } else {
+              const inputEl = document.getElementById(inputId);
+              if (inputEl) {
+                const targetId = inputEl.getAttribute('data-target');
+                const box = inputEl.closest('.modul-box');
+                displayFileUI(file, inputId, targetId, box);
+              }
+            }
+            cursor.continue();
+          }
+        };
+      });
+    }
+
+    loadFilesFromDB();
+
+    const profilePicInput = document.getElementById('uploadProfilePic');
+    if (profilePicInput) {
+      profilePicInput.addEventListener('change', function(e) {
+        const file = this.files[0];
+        if(!file) return;
+        const fileURL = URL.createObjectURL(file);
+        const headerImg = document.getElementById('headerPhotoImg');
+        const mainImg = document.getElementById('mainProfileImg');
+        if(headerImg) headerImg.src = fileURL;
+        if(mainImg) mainImg.src = fileURL;
+        saveFileToDB(this.id, file);
+      });
+    }
+
+    const uploadInputs = document.querySelectorAll('.upload-input:not(#uploadProfilePic)');
+    uploadInputs.forEach(input => {
+      input.addEventListener('change', function(e) {
+        const file = this.files[0];
+        if(!file) return;
+        const targetId = this.getAttribute('data-target');
+        const box = this.closest('.modul-box');
+        
+        displayFileUI(file, this.id, targetId, box);
+        saveFileToDB(this.id, file);
+      });
+    });
+
+    const driveBtns = document.querySelectorAll('[data-drive]');
+    driveBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const inputId = this.getAttribute('data-drive');
+        const input = document.getElementById(inputId);
+        const targetId = input.getAttribute('data-target');
+        const frame = document.getElementById(targetId);
+        const box = input.closest('.video-drive');
+        const embed = box.querySelector('.modul-embed');
+
+        let val = input.value.trim();
+        if(!val) return;
+        if(val.includes('file/d/')) {
+          const fileId = val.split('/d/')[1].split('/')[0];
+          val = `https://drive.google.com/file/d/${fileId}/preview`;
+        }
+        if(frame) {
+          frame.src = val;
+          if(embed) embed.hidden = false;
+        }
+      });
+    });
+
+    const modulModal = document.getElementById('modulModal');
+    const modulModalFrame = document.getElementById('modulModalFrame');
+    const modulModalTitle = document.getElementById('modulModalTitle');
+    const modulModalTab = document.getElementById('modulModalTab');
+    const modulModalClose = document.getElementById('modulModalClose');
+
+    document.querySelectorAll('[data-zoom]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-zoom');
+        const sourceFrame = document.getElementById(targetId);
+        if(sourceFrame && sourceFrame.src) {
+          modulModalFrame.src = sourceFrame.src;
+          modulModalTab.href = sourceFrame.src;
+          modulModal.classList.add('show');
+        }
+      });
+    });
+
+    if(modulModalClose) {
+      modulModalClose.addEventListener('click', () => {
+        modulModal.classList.remove('show');
+        modulModalFrame.src = '';
+      });
+    }
+  });
+</script>
+</body>
+</html>
